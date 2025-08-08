@@ -13,8 +13,8 @@ let currentPage = 'home';
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.classList.remove('active');
                 if (link.dataset.page === pageId) {
-        link.classList.add('active');
-    }
+                    link.classList.add('active');
+                }
                 // if (link.getAttribute('onclick') === `showPage('${pageId}')`) {
                 //     link.classList.add('active');
                 // }
