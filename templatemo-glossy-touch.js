@@ -15,9 +15,6 @@ let currentPage = 'home';
                 if (link.dataset.page === pageId) {
                     link.classList.add('active');
                 }
-                // if (link.getAttribute('onclick') === `showPage('${pageId}')`) {
-                //     link.classList.add('active');
-                // }
             });
             
             currentPage = pageId;
