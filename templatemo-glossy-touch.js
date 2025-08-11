@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
       const pageId = this.dataset.page;
-      history.pushState({ page: pageId }, '', `/${pageId}`);
+      location.hash = pageId;
+    //   history.pushState({ page: pageId }, '', `/${pageId}`);
       showPage(pageId);
     });
   });
@@ -18,7 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Load correct page on first load
-  const initialPage = location.pathname.replace('/', '') || 'home';
+  const initialPage = location.hash.replace('#', '') || 'home';
+//   const initialPage = location.pathname.replace('/', '') || 'home';
   showPage(initialPage);
 });
 
@@ -44,89 +46,6 @@ function showPage(pageId) {
   // Scroll to top
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
-
-
-
-
-
-
-
-
-
-// let currentPage = 'home';
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   document.querySelectorAll('.nav-links a').forEach(link => {
-//     link.addEventListener('click', function(e) {
-//       e.preventDefault(); // stop page reload both locally & Netlify
-//       showPage(this.dataset.page);
-//     });
-//   });
-// });
-
-// function showPage(pageId) {
-//   // Hide all pages
-//   document.querySelectorAll('.page').forEach(page => {
-//     page.classList.remove('active');
-//   });
-
-//   // Show selected page
-//   document.getElementById(pageId).classList.add('active');
-
-//   // Update navigation
-//   document.querySelectorAll('.nav-links a').forEach(link => {
-//     link.classList.remove('active');
-//     if (link.dataset.page === pageId) {
-//       link.classList.add('active');
-//     }
-//   });
-
-//   currentPage = pageId;
-
-//   // Move footer to the active page
-//   const footer = document.getElementById('footer');
-//   const activePage = document.getElementById(pageId);
-//   activePage.appendChild(footer);
-
-//   // Scroll to top
-//   window.scrollTo({ top: 0, behavior: 'smooth' });
-// }
-
-
-
-
-
-
-// let currentPage = 'home';
-
-//         function showPage(pageId) {
-//             // Hide all pages
-//             document.querySelectorAll('.page').forEach(page => {
-//                 page.classList.remove('active');
-//             });
-            
-//             // Show selected page
-//             document.getElementById(pageId).classList.add('active');
-            
-//             // Update navigation
-//             document.querySelectorAll('.nav-links a').forEach(link => {
-//                 link.classList.remove('active');
-//                 if (link.dataset.page === pageId) {
-//                     link.classList.add('active');
-//                 }
-//             });
-            
-//             currentPage = pageId;
-            
-//             // Move footer to the active page
-//             const footer = document.getElementById('footer');
-//             const activePage = document.getElementById(pageId);
-//             activePage.appendChild(footer);
-            
-//             // Scroll to top
-//             window.scrollTo({ top: 0, behavior: 'smooth' });
-//         }
 
         // Initialize footer position
         window.addEventListener('DOMContentLoaded', () => {
