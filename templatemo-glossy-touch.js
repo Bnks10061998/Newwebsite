@@ -76,37 +76,62 @@ function showPage(pageId) {
             parallax.style.transform = `translateY(${speed}px)`;
         });
 
-        // Add click ripple effect to glass elements
-        document.querySelectorAll('.glass').forEach(element => {
-            element.addEventListener('click', function(e) {
-                const ripple = document.createElement('div');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.cssText = `
-                    position: absolute;
-                    width: ${size}px;
-                    height: ${size}px;
-                    left: ${x}px;
-                    top: ${y}px;
-                    background: rgba(255, 255, 255, 0.3);
-                    border-radius: 50%;
-                    transform: scale(0);
-                    animation: ripple 0.6s linear;
-                    pointer-events: none;
-                    z-index: 1000;
-                `;
-                
-                this.style.position = 'relative';
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Remove active class from all links
+        document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(page => {
+            page.style.display = 'none';
         });
+
+        // Show the clicked page
+        const targetId = this.getAttribute('href').replace('#', '');
+        document.getElementById(targetId).style.display = 'block';
+    });
+});
+
+// Optional: Show the first page by default
+document.querySelectorAll('.page').forEach((page, index) => {
+    page.style.display = index === 0 ? 'block' : 'none';
+});
+
+
+        // Add click ripple effect to glass elements
+        // document.querySelectorAll('.glass').forEach(element => {
+        //     element.addEventListener('click', function(e) {
+        //         const ripple = document.createElement('div');
+        //         const rect = this.getBoundingClientRect();
+        //         const size = Math.max(rect.width, rect.height);
+        //         const x = e.clientX - rect.left - size / 2;
+        //         const y = e.clientY - rect.top - size / 2;
+                
+        //         ripple.style.cssText = `
+        //             position: absolute;
+        //             width: ${size}px;
+        //             height: ${size}px;
+        //             left: ${x}px;
+        //             top: ${y}px;
+        //             background: rgba(255, 255, 255, 0.3);
+        //             border-radius: 50%;
+        //             transform: scale(0);
+        //             animation: ripple 0.6s linear;
+        //             pointer-events: none;
+        //             z-index: 1000;
+        //         `;
+                
+        //         this.style.position = 'relative';
+        //         this.appendChild(ripple);
+                
+        //         setTimeout(() => {
+        //             ripple.remove();
+        //         }, 600);
+        //     });
+        // });
 
         // Add ripple animation keyframes
         const style = document.createElement('style');

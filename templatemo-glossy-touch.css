@@ -732,4 +732,7 @@ button[type="submit"] {
     padding-top: 0; /* Ensure no extra padding */
     display: inline-block; /* Keep it inline */
 }
+.page {
+    display: block; /* or flex/grid */
+}
 }
